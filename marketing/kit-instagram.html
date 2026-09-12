@@ -1,0 +1,665 @@
+<title>Reclame Acá en video</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#eef1f6;
+  --surface:#ffffff;
+  --surface-2:#f6f8fb;
+  --ink:#14202f;
+  --ink-2:#4d5f74;
+  --ink-3:#7f8d9e;
+  --line:#dce3ec;
+  --line-strong:#c5d1de;
+  --accent:#ff6b35;
+  --accent-ink:#cf4a17;
+  --accent-soft:#fff1eb;
+  --deep:#0f2338;
+  --deep-2:#1f4166;
+  --shadow:0 1px 2px rgba(15,35,56,.05), 0 12px 28px rgba(15,35,56,.07);
+  --mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --sans:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#081522;
+    --surface:#102336;
+    --surface-2:#0c1c2c;
+    --ink:#e9f0f7;
+    --ink-2:#a0b3c7;
+    --ink-3:#75899e;
+    --line:#1d3450;
+    --line-strong:#2c4a68;
+    --accent:#ff7d4d;
+    --accent-ink:#ff9468;
+    --accent-soft:#22364a;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 14px 34px rgba(0,0,0,.34);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#081522;
+  --surface:#102336;
+  --surface-2:#0c1c2c;
+  --ink:#e9f0f7;
+  --ink-2:#a0b3c7;
+  --ink-3:#75899e;
+  --line:#1d3450;
+  --line-strong:#2c4a68;
+  --accent:#ff7d4d;
+  --accent-ink:#ff9468;
+  --accent-soft:#22364a;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 14px 34px rgba(0,0,0,.34);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--sans); font-size:16px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.page{max-width:1080px; margin:0 auto; padding-inline:24px; padding-block:0 96px}
+
+h1,h2,h3{text-wrap:balance; letter-spacing:-.022em; margin:0}
+h1{font-size:clamp(34px,5.2vw,52px); font-weight:800; line-height:1.06}
+h2{font-size:clamp(23px,3vw,30px); font-weight:700; line-height:1.15}
+h3{font-size:20px; font-weight:700; line-height:1.25}
+p{margin:0}
+.lede{font-size:clamp(17px,2vw,19px); color:var(--ink-2); max-width:62ch; line-height:1.6}
+.muted{color:var(--ink-2)}
+.small{font-size:14.5px; color:var(--ink-2); line-height:1.55}
+
+.label{
+  font-family:var(--mono); font-size:11.5px; font-weight:500;
+  text-transform:uppercase; letter-spacing:.12em; color:var(--ink-3);
+}
+
+/* ---------- encabezado ---------- */
+.top{
+  border-bottom:1px solid var(--line);
+  padding-block:40px 34px; margin-bottom:56px;
+  display:flex; flex-direction:column; gap:26px;
+}
+.brandline{display:flex; align-items:center; gap:12px}
+.brandline svg{width:34px; height:34px; flex:none; display:block}
+.brandline b{font-size:17px; font-weight:700; letter-spacing:-.01em}
+.brandline span{font-family:var(--mono); font-size:12px; color:var(--ink-3)}
+.rule-accent{width:52px; height:4px; border-radius:4px; background:var(--accent)}
+
+.facts{display:flex; flex-wrap:wrap; gap:10px 30px; margin-top:4px}
+.fact{display:flex; align-items:baseline; gap:9px}
+.fact b{font-family:var(--mono); font-size:15px; font-weight:500; color:var(--ink); font-variant-numeric:tabular-nums}
+
+/* ---------- secciones ---------- */
+section{margin-top:72px}
+.sec-head{display:flex; flex-direction:column; gap:9px; margin-bottom:30px}
+.sec-head p{max-width:62ch}
+
+/* ---------- piezas (reels) ---------- */
+.pieces{display:flex; flex-direction:column}
+.piece{
+  display:grid; grid-template-columns:252px 1fr; gap:34px;
+  padding-block:38px; border-top:1px solid var(--line); align-items:start;
+}
+.piece:last-child{border-bottom:1px solid var(--line)}
+
+.screen{
+  position:relative; border-radius:16px; overflow:hidden;
+  background:var(--deep); box-shadow:var(--shadow); aspect-ratio:9/16;
+}
+.screen video{display:block; width:100%; height:100%; object-fit:cover; background:var(--deep)}
+
+.piece-body{display:flex; flex-direction:column; gap:18px; min-width:0}
+.piece-head{display:flex; flex-direction:column; gap:7px}
+.filename{
+  font-family:var(--mono); font-size:12.5px; color:var(--accent-ink);
+  word-break:break-all;
+}
+.meta{display:flex; flex-wrap:wrap; gap:8px 20px; align-items:center}
+.meta span{font-family:var(--mono); font-size:12.5px; color:var(--ink-3); font-variant-numeric:tabular-nums}
+
+/* barra de ritmo: cada segmento es una escena, ancho proporcional a su duración */
+.beats{display:flex; gap:3px; height:9px; border-radius:5px; overflow:hidden}
+.beats i{display:block; height:100%}
+.b-dark{background:var(--deep-2)}
+.b-navy{background:var(--deep)}
+.b-orange{background:var(--accent)}
+.b-light{background:var(--line-strong)}
+.beats-key{display:flex; flex-wrap:wrap; gap:6px 16px; margin-top:9px}
+.beats-key span{display:flex; align-items:center; gap:6px; font-size:12px; color:var(--ink-3)}
+.beats-key i{width:10px; height:10px; border-radius:3px; flex:none}
+
+/* ---------- copy listo para pegar ---------- */
+.copy{border:1px solid var(--line); border-radius:12px; background:var(--surface); overflow:hidden}
+.copy-bar{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:9px 10px 9px 14px; border-bottom:1px solid var(--line); background:var(--surface-2);
+}
+.copy-text{
+  margin:0; padding:16px; font-family:var(--sans); font-size:14.5px; line-height:1.62;
+  color:var(--ink-2); white-space:pre-wrap; max-height:188px; overflow-y:auto;
+}
+.copy-text strong{color:var(--ink); font-weight:600}
+button.copy-btn{
+  font:inherit; font-size:13px; font-weight:600; color:var(--ink);
+  background:var(--surface); border:1px solid var(--line-strong); border-radius:7px;
+  padding:6px 13px; cursor:pointer; white-space:nowrap;
+  transition:border-color .15s, color .15s, background .15s;
+}
+button.copy-btn:hover{border-color:var(--accent); color:var(--accent-ink)}
+button.copy-btn:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+button.copy-btn[data-done="1"]{color:#1e9e62; border-color:#1e9e62}
+
+/* ---------- historias ---------- */
+.stories{display:grid; grid-template-columns:repeat(3,1fr); gap:26px}
+.story{display:flex; flex-direction:column; gap:14px}
+.story .screen{border-radius:14px}
+.story-body{display:flex; flex-direction:column; gap:7px}
+.sticker-note{
+  display:flex; gap:9px; align-items:flex-start; padding:11px 13px;
+  background:var(--accent-soft); border-radius:9px; font-size:13.5px; line-height:1.45; color:var(--ink-2);
+}
+.sticker-note b{color:var(--ink); font-weight:600}
+
+/* ---------- tablas ---------- */
+.tablewrap{overflow-x:auto; border:1px solid var(--line); border-radius:12px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; min-width:560px; font-size:14.5px}
+th,td{text-align:left; padding:13px 16px; border-bottom:1px solid var(--line); vertical-align:top}
+tbody tr:last-child td{border-bottom:none}
+th{
+  font-family:var(--mono); font-size:11.5px; font-weight:500; text-transform:uppercase;
+  letter-spacing:.1em; color:var(--ink-3); background:var(--surface-2); white-space:nowrap;
+}
+td b{font-weight:600}
+td.week{font-family:var(--mono); color:var(--ink-3); font-variant-numeric:tabular-nums; white-space:nowrap}
+
+/* ---------- referencia de identidad ---------- */
+.swatches{display:grid; grid-template-columns:repeat(auto-fill,minmax(128px,1fr)); gap:12px}
+.sw{border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--surface)}
+.sw .chip{height:62px}
+.sw .info{padding:9px 11px; display:flex; flex-direction:column; gap:1px}
+.sw .info b{font-size:13px; font-weight:600}
+.sw .info code{font-family:var(--mono); font-size:11.5px; color:var(--ink-3); text-transform:uppercase}
+
+.typespecs{display:flex; flex-direction:column; border:1px solid var(--line); border-radius:12px; background:var(--surface); overflow:hidden}
+.ts{display:grid; grid-template-columns:1fr auto; gap:16px; padding:15px 18px; border-bottom:1px solid var(--line); align-items:center}
+.ts:last-child{border-bottom:none}
+.ts .sample{min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.ts .spec{font-family:var(--mono); font-size:12px; color:var(--ink-3); text-align:right; white-space:nowrap}
+.s-display{font-size:27px; font-weight:800; letter-spacing:-.03em}
+.s-sub{font-size:19px; font-weight:700; letter-spacing:-.01em}
+.s-body{font-size:15px; font-weight:400; color:var(--ink-2)}
+.s-badge{font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; color:var(--accent-ink)}
+
+/* ---------- código ---------- */
+pre.code{
+  font-family:var(--mono); font-size:13px; line-height:1.65; color:var(--ink-2);
+  background:var(--surface); border:1px solid var(--line); border-radius:11px;
+  padding:15px 17px; overflow-x:auto; margin:0;
+}
+pre.code b{color:var(--ink); font-weight:500}
+
+.note{
+  border-left:3px solid var(--accent); padding:2px 0 2px 17px;
+  color:var(--ink-2); font-size:15px; line-height:1.6; max-width:64ch;
+}
+.note b{color:var(--ink); font-weight:600}
+
+.stack{display:flex; flex-direction:column; gap:16px}
+.stack-lg{display:flex; flex-direction:column; gap:26px}
+
+@media (max-width:860px){
+  .piece{grid-template-columns:196px 1fr; gap:24px}
+  .stories{grid-template-columns:1fr; gap:34px}
+  .story{display:grid; grid-template-columns:150px 1fr; gap:20px; align-items:start}
+}
+@media (max-width:560px){
+  .piece{grid-template-columns:1fr; gap:20px}
+  .piece .screen{max-width:230px}
+  .story{grid-template-columns:1fr}
+  .story .screen{max-width:230px}
+  .top{padding-block:32px 28px; margin-bottom:44px}
+  section{margin-top:56px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important; transition:none !important}
+}
+</style>
+
+<div class="page">
+
+<header class="top">
+  <div class="brandline">
+    <svg viewBox="0 0 64 64" role="img" aria-label="Reclame Acá">
+      <circle cx="32" cy="32" r="32" fill="#0f2338"></circle>
+      <path d="M17 27 L36 17 L36 47 L17 37 Z" fill="#ffffff" stroke="#ffffff" stroke-width="4" stroke-linejoin="round"></path>
+      <path d="M43 23 L50 19" stroke="#ffffff" stroke-width="4" stroke-linecap="round"></path>
+      <path d="M44 32 L52 32" stroke="#ffffff" stroke-width="4" stroke-linecap="round"></path>
+      <path d="M43 41 L50 45" stroke="#ffffff" stroke-width="4" stroke-linecap="round"></path>
+    </svg>
+    <b>Reclame Acá</b>
+    <span>reclameaca.com.ar</span>
+  </div>
+
+  <div class="rule-accent"></div>
+
+  <h1>Cuatro reels y tres historias,<br>listos para publicar.</h1>
+  <p class="lede">Todo el contenido sale de las guías legales del sitio y usa los colores,
+  la tipografía y el logo de <span class="muted">reclameaca.com.ar</span>. Cada pieza viene
+  con su copy escrito y el video ya renderizado: se descarga, se sube y se publica.</p>
+
+  <div class="facts">
+    <div class="fact"><span class="label">Piezas</span><b>7</b></div>
+    <div class="fact"><span class="label">Duración total</span><b>1:37</b></div>
+    <div class="fact"><span class="label">Formato</span><b>1080×1920 · 30 fps · H.264</b></div>
+    <div class="fact"><span class="label">Audio</span><b>se elige en la app</b></div>
+  </div>
+</header>
+
+<div class="note">Los MP4 van <b>sin audio a propósito</b>. El alcance de un Reel depende mucho
+del audio en tendencia, y ese se elige dentro de Instagram el día que publicás: subís el video,
+tocás <b>Audio</b> y elegís uno del momento. Como todo el mensaje está escrito en pantalla,
+el video igual funciona con el sonido apagado, que es como lo mira la mayoría.</div>
+
+<section>
+  <div class="sec-head">
+    <span class="label">Reels</span>
+    <h2>Las cuatro piezas de feed</h2>
+    <p class="muted small">La barra de ritmo muestra cómo está armado cada video: cada segmento
+    es una placa y su ancho es lo que dura. El gancho siempre entra antes del segundo 2,
+    y el corte de color naranja es el quiebre.</p>
+  </div>
+
+  <div class="pieces">
+
+    <article class="piece">
+      <div class="screen">
+        <video src="video/salida/reel-01-gimnasio.mp4" poster="video/salida/posters/reel-01-gimnasio.jpg"
+               controls muted loop playsinline preload="metadata"></video>
+      </div>
+      <div class="piece-body">
+        <div class="piece-head">
+          <h3>La baja del gimnasio</h3>
+          <p class="filename">reel-01-gimnasio.mp4</p>
+        </div>
+        <p class="small">Arranca con una frase que casi todo el mundo escuchó alguna vez y la
+        desarma con tres artículos: baja por el mismo medio, prohibición de cobrar preaviso y
+        Botón de baja. Cierra con cómo frenar el débito en el banco. Es el que más se guarda,
+        porque resuelve un problema concreto que la gente tiene hoy.</p>
+        <div>
+          <div class="beats" role="img" aria-label="Siete placas: gancho, quiebre, tres placas legales, salida práctica y cierre de marca">
+            <i class="b-dark" style="flex:2.8"></i><i class="b-orange" style="flex:1.7"></i><i class="b-light" style="flex:3.7"></i><i class="b-light" style="flex:3.4"></i><i class="b-light" style="flex:3.5"></i><i class="b-dark" style="flex:3.4"></i><i class="b-navy" style="flex:3.2"></i>
+          </div>
+          <div class="beats-key">
+            <span><i class="b-dark"></i>gancho</span>
+            <span><i class="b-orange"></i>quiebre</span>
+            <span><i class="b-light"></i>placa legal</span>
+            <span><i class="b-navy"></i>cierre</span>
+          </div>
+        </div>
+        <div class="meta"><span>21,7 s</span><span>7 placas</span><span>Ley 24.240 · Disp. 954/2025</span></div>
+        <div class="copy">
+          <div class="copy-bar"><span class="label">Copy para el posteo</span><button class="copy-btn" type="button">Copiar</button></div>
+          <p class="copy-text">"La baja solo se hace en la sede." Es mentira, y la ley lo dice en una línea.
+
+Si te anotaste por internet o por teléfono, te podés dar de baja por el mismo medio (art. 10 ter, Ley 24.240). No te pueden obligar a ir en persona y te tienen que mandar la constancia dentro de las 72 horas, sin costo.
+
+Tampoco te pueden cobrar preaviso ni mes adelantado por irte: eso lo prohíbe el art. 10 quáter.
+
+Y si vende planes por internet, tiene que tener el Botón de baja a la vista en su web, sin pedirte registro, con código en 24 horas (Disposición 954/2025).
+
+¿Te lo siguen debitando? Podés darlo de baja directamente en tu banco, sin pasar por el gimnasio, y pedir que te devuelvan lo debitado en los últimos 30 días.
+
+Guardá esto para cuando lo necesites. La guía completa está en reclameaca.com.ar/guias
+
+#DerechosDelConsumidor #DefensaDelConsumidor #Gimnasio #DebitoAutomatico #Ley24240 #Argentina #ConsumidorArgentino #TusDerechos #ReclameAca</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="piece">
+      <div class="screen">
+        <video src="video/salida/reel-02-manifiesto.mp4" poster="video/salida/posters/reel-02-manifiesto.jpg"
+               controls muted loop playsinline preload="metadata"></video>
+      </div>
+      <div class="piece-body">
+        <div class="piece-head">
+          <h3>Manifiesto de marca</h3>
+          <p class="filename">reel-02-manifiesto.mp4</p>
+        </div>
+        <p class="small">Publicitario puro: tres golpes secos arman la escena antes de decir qué
+        se vende. Es el único que no depende de que el tema te toque, así que es el que conviene
+        pautar. La línea del medio sirve también como bio de la cuenta y como titular de campaña.</p>
+        <div>
+          <div class="beats" role="img" aria-label="Siete placas: tres golpes de gancho, quiebre, la frase central, qué es la plataforma y cierre">
+            <i class="b-dark" style="flex:1.5"></i><i class="b-dark" style="flex:1.4"></i><i class="b-dark" style="flex:1.8"></i><i class="b-orange" style="flex:1.9"></i><i class="b-dark" style="flex:3.4"></i><i class="b-dark" style="flex:3.3"></i><i class="b-navy" style="flex:2.8"></i>
+          </div>
+        </div>
+        <div class="meta"><span>16,1 s</span><span>7 placas</span><span>sin cita legal</span></div>
+        <div class="copy">
+          <div class="copy-bar"><span class="label">Copy para el posteo</span><button class="copy-btn" type="button">Copiar</button></div>
+          <p class="copy-text">Un reclamo por privado es un favor que te hacen. Uno público es un antecedente.
+
+Llamás, esperás, te dan un número de gestión y no te llama nadie. El problema no es que no tengas razón: es que nadie más se entera.
+
+En Reclame Acá publicás tu reclamo, la empresa lo ve en su panel y responde donde todos lo ven. Queda con fecha, con estado, y a la vista del próximo que esté por comprarle.
+
+Publicar es gratis. reclameaca.com.ar
+
+#Consumidores #DefensaDelConsumidor #Reclamos #Argentina #AtencionAlCliente #TusDerechos #ReclameAca</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="piece">
+      <div class="screen">
+        <video src="video/salida/reel-03-tarjeta.mp4" poster="video/salida/posters/reel-03-tarjeta.jpg"
+               controls muted loop playsinline preload="metadata"></video>
+      </div>
+      <div class="piece-body">
+        <div class="piece-head">
+          <h3>Consumo desconocido en la tarjeta</h3>
+          <p class="filename">reel-03-tarjeta.mp4</p>
+        </div>
+        <p class="small">El tema con más volumen de búsqueda de todos. La placa fuerte es
+        "tenés 30 días", y el nudo son los plazos que le corren al banco: 7, 15 y 10 días hábiles.
+        Termina en el BCRA, que es la salida que casi nadie sabe que tiene.</p>
+        <div>
+          <div class="beats" role="img" aria-label="Siete placas: gancho, quiebre, tres placas legales, la salida ante el Banco Central y cierre">
+            <i class="b-dark" style="flex:2.7"></i><i class="b-orange" style="flex:1.8"></i><i class="b-light" style="flex:3.6"></i><i class="b-light" style="flex:3.6"></i><i class="b-light" style="flex:3.2"></i><i class="b-dark" style="flex:2.9"></i><i class="b-navy" style="flex:3"></i>
+          </div>
+        </div>
+        <div class="meta"><span>20,8 s</span><span>7 placas</span><span>Ley 25.065 · normas del BCRA</span></div>
+        <div class="copy">
+          <div class="copy-bar"><span class="label">Copy para el posteo</span><button class="copy-btn" type="button">Copiar</button></div>
+          <p class="copy-text">Apareció un consumo que no hiciste en el resumen. Tenés 30 días.
+
+El art. 26 de la Ley 25.065 te deja impugnar el resumen dentro de los 30 días de recibirlo, por escrito. Identificá cada consumo: fecha, comercio y monto, tal como figuran. Y pedí número de reclamo.
+
+Los plazos corren para ellos:
+· 7 días para confirmarte que recibieron la impugnación
+· 15 días más para corregir el error o explicártelo con comprobantes
+· 10 días hábiles para resolver si les dijiste que no te conforma
+
+Mientras dura el reclamo no te pueden bloquear la tarjeta ni las adicionales, si no pasaste el límite. Y pagar el mínimo no significa que aceptaste el resumen.
+
+¿Pasaron 10 días hábiles y nada? Va reclamo al Banco Central. Guardá el número que te dio el banco: te lo van a pedir.
+
+Paso a paso en reclameaca.com.ar/guias
+
+#TarjetaDeCredito #DefensaDelConsumidor #BCRA #Ley25065 #Bancos #Argentina #TusDerechos #ReclameAca</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="piece">
+      <div class="screen">
+        <video src="video/salida/reel-04-garantia.mp4" poster="video/salida/posters/reel-04-garantia.jpg"
+               controls muted loop playsinline preload="metadata"></video>
+      </div>
+      <div class="piece-body">
+        <div class="piece-head">
+          <h3>Garantía de electrodomésticos</h3>
+          <p class="filename">reel-04-garantia.mp4</p>
+        </div>
+        <p class="small">Desarma la excusa más común del mostrador: "eso lo tenés que ver con la
+        marca". El dato que más sorprende no es el de los 6 meses sino el del flete: el traslado
+        al service lo paga el responsable de la garantía, no el cliente.</p>
+        <div>
+          <div class="beats" role="img" aria-label="Siete placas: gancho, quiebre, dos placas legales, lo que no paga el cliente, qué pasa si vuelve fallando y cierre">
+            <i class="b-dark" style="flex:2.9"></i><i class="b-orange" style="flex:1.6"></i><i class="b-light" style="flex:3.6"></i><i class="b-light" style="flex:3.4"></i><i class="b-light" style="flex:3.4"></i><i class="b-dark" style="flex:2.9"></i><i class="b-navy" style="flex:3"></i>
+          </div>
+        </div>
+        <div class="meta"><span>20,8 s</span><span>7 placas</span><span>Ley 24.240 · Decreto 1798/94</span></div>
+        <div class="copy">
+          <div class="copy-bar"><span class="label">Copy para el posteo</span><button class="copy-btn" type="button">Copiar</button></div>
+          <p class="copy-text">"Eso lo tenés que ver con la marca, nosotros solo lo vendimos." No.
+
+El art. 13 de la Ley 24.240 hace responsables solidarios al fabricante, al importador, al distribuidor y al vendedor. Le reclamás a quien te resulte más fácil, y el comercio sigue siendo responsable.
+
+Todo producto nuevo tiene 6 meses de garantía legal, 3 si es usado, desde que te lo entregan. La marca puede darte más, nunca menos: si te la recorta, esa cláusula es nula.
+
+Lo que no pagás vos: el flete al service (tienen 48 horas para retirarlo desde que avisás), los gastos de la reparación, y los repuestos, que tienen que ser nuevos. Los días que estuvo en el taller se suman a tu garantía.
+
+¿Volvió y sigue fallando? El art. 17 te deja elegir: cambio por uno nuevo, devolución de la plata, o descuento.
+
+Guía completa en reclameaca.com.ar/guias
+
+#Garantia #DefensaDelConsumidor #Electrodomesticos #Ley24240 #Argentina #TusDerechos #ReclameAca</p>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="label">Historias</span>
+    <h2>Tres historias con lugar para el sticker</h2>
+    <p class="muted small">Las tres dejan vacía a propósito la franja de abajo. Ahí va el sticker,
+    encima del video, ya dentro de la app. Si lo ponés más arriba tapa el texto.</p>
+  </div>
+
+  <div class="stories">
+    <div class="story">
+      <div class="screen">
+        <video src="video/salida/historia-01-encuesta.mp4" poster="video/salida/posters/historia-01-encuesta.jpg"
+               controls muted loop playsinline preload="metadata"></video>
+      </div>
+      <div class="story-body">
+        <h3>¿Te lo dijeron?</h3>
+        <p class="filename">historia-01-encuesta.mp4 · 6,0 s</p>
+        <div class="sticker-note"><b>Encuesta:</b> Sí, mil veces / Me está pasando ahora</div>
+        <p class="small">Las respuestas te dicen qué guía escribir después.</p>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="screen">
+        <video src="video/salida/historia-02-guia.mp4" poster="video/salida/posters/historia-02-guia.jpg"
+               controls muted loop playsinline preload="metadata"></video>
+      </div>
+      <div class="story-body">
+        <h3>Guía del gimnasio</h3>
+        <p class="filename">historia-02-guia.mp4 · 6,0 s</p>
+        <div class="sticker-note"><b>Link:</b> /guias/dar-de-baja-gimnasio, con el texto "Leer la guía"</div>
+        <p class="small">Va el día después de la encuesta, cuando ya hay interés.</p>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="screen">
+        <video src="video/salida/historia-03-garantia.mp4" poster="video/salida/posters/historia-03-garantia.jpg"
+               controls muted loop playsinline preload="metadata"></video>
+      </div>
+      <div class="story-body">
+        <h3>6 meses de garantía</h3>
+        <p class="filename">historia-03-garantia.mp4 · 6,0 s</p>
+        <div class="sticker-note"><b>Link:</b> /guias/garantia-electrodomesticos, con el texto "Cómo reclamar"</div>
+        <p class="small">Un solo dato, grande. Es la que mejor funciona para responder mensajes.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="note" style="margin-top:26px">La secuencia que mejor rinde son tres historias en
+  días seguidos: <b>encuesta</b>, después una captura de los resultados con "al 80% le pasó", y
+  recién ahí <b>la guía con el link</b>. Pedir el clic en el primer toque casi nunca funciona.</div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="label">Calendario</span>
+    <h2>Cuatro semanas</h2>
+    <p class="muted small">Tres piezas de feed por semana y una historia por día hábil. El patrón
+    que se repite es siempre el mismo: la excusa que te dicen, qué dice la ley, dejalo público.
+    Los guiones de las piezas filmadas (B1, B2 y B3) están en GUIONES.md.</p>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>Semana</th><th>Martes</th><th>Jueves</th><th>Sábado</th><th>Historias</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="week">1</td>
+          <td><b>Manifiesto</b><br><span class="small">reel-02</span></td>
+          <td><b>Gimnasio</b><br><span class="small">reel-01</span></td>
+          <td><b>Las 4 cosas</b><br><span class="small">B3, a cámara</span></td>
+          <td class="small">Encuesta → resultados → guía</td>
+        </tr>
+        <tr>
+          <td class="week">2</td>
+          <td><b>Garantía</b><br><span class="small">reel-04</span></td>
+          <td><b>El sector que nunca atiende</b><br><span class="small">B1, sketch</span></td>
+          <td><b>Placa</b><br><span class="small">la frase del manifiesto</span></td>
+          <td class="small">Historia de garantía + caja de preguntas</td>
+        </tr>
+        <tr>
+          <td class="week">3</td>
+          <td><b>Tarjeta</b><br><span class="small">reel-03</span></td>
+          <td><b>Un reclamo en 40 segundos</b><br><span class="small">B2, grabación de pantalla</span></td>
+          <td><b>Carrusel</b><br><span class="small">la guía del mes</span></td>
+          <td class="small">Cuenta regresiva a una guía nueva</td>
+        </tr>
+        <tr>
+          <td class="week">4</td>
+          <td><b>Reel nuevo</b><br><span class="small">el tema más votado</span></td>
+          <td><b>Respuesta en video</b><br><span class="small">a un comentario real</span></td>
+          <td><b>Resumen del mes</b></td>
+          <td class="small">Repost de las de mejor retención</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note" style="margin-top:26px">La semana 1 abre con el manifiesto porque dice quién
+  sos, y sigue con el gimnasio porque es el tema más buscado. El humor de B1 recién aparece en la
+  semana 2, cuando la cuenta ya se ganó algo de crédito. <b>Mejor horario:</b> 12:30 a 14:00 y
+  20:00 a 22:30.</div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="label">Identidad</span>
+    <h2>De dónde salen los colores y la tipografía</h2>
+    <p class="muted small">Está todo tomado de <span class="muted">assets/css/style.css</span> del
+    sitio, para que el contenido de redes y el producto se vean como la misma cosa. La regla que
+    más importa: el naranja es el color de la acción, no de relleno. Una sola cosa naranja por
+    pantalla, el botón o la palabra que importa, nunca las dos.</p>
+  </div>
+
+  <div class="stack-lg">
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#0f2338"></div><div class="info"><b>Navy 900</b><code>#0f2338</code></div></div>
+      <div class="sw"><div class="chip" style="background:#16324f"></div><div class="info"><b>Navy 800</b><code>#16324f</code></div></div>
+      <div class="sw"><div class="chip" style="background:#1f4166"></div><div class="info"><b>Navy 700</b><code>#1f4166</code></div></div>
+      <div class="sw"><div class="chip" style="background:#ff6b35"></div><div class="info"><b>Naranja 500</b><code>#ff6b35</code></div></div>
+      <div class="sw"><div class="chip" style="background:#e85a2a"></div><div class="info"><b>Naranja 600</b><code>#e85a2a</code></div></div>
+      <div class="sw"><div class="chip" style="background:#f5f7fa"></div><div class="info"><b>Fondo claro</b><code>#f5f7fa</code></div></div>
+      <div class="sw"><div class="chip" style="background:#1a2433"></div><div class="info"><b>Texto</b><code>#1a2433</code></div></div>
+      <div class="sw"><div class="chip" style="background:#1e9e62"></div><div class="info"><b>Resuelto</b><code>#1e9e62</code></div></div>
+    </div>
+
+    <div class="typespecs">
+      <div class="ts"><div class="sample s-display">Tu reclamo, visible</div><div class="spec">Inter 800 · −0.03 em</div></div>
+      <div class="ts"><div class="sample s-sub">Cómo funciona</div><div class="spec">Inter 700 · −0.01 em</div></div>
+      <div class="ts"><div class="sample s-body">Publicá tu problema con una empresa y seguí el estado.</div><div class="spec">Inter 400 · 1.45</div></div>
+      <div class="ts"><div class="sample s-badge">Ley 24.240 · Art. 10 ter</div><div class="spec">Inter 800 · +0.1 em</div></div>
+    </div>
+
+    <div class="note">Los titulares van con tracking <b>negativo</b> y las etiquetas en mayúscula
+    con tracking <b>positivo</b>. Ese contraste es buena parte de la personalidad de la marca, y
+    es lo primero que se pierde si alguien rehace una placa en Canva sin la referencia.</div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="label">Límite editorial</span>
+    <h2>Qué no publica la cuenta</h2>
+  </div>
+  <div class="note">El sitio nombra empresas porque publica reclamos de usuarios, y esos reclamos
+  son de ellos. El contenido propio de la marca nombra empresas <b>solo en contexto educativo</b>
+  ("cómo reclamar un corte a Edenor o Edesur"), nunca acusándolas desde la cuenta oficial.
+  La acusación la hace el usuario en su reclamo; la marca pone la plataforma y la información.
+  Tampoco van promesas de resultado ("te devolvemos la plata") ni asesoramiento legal
+  personalizado por mensaje privado.</div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="label">Producción</span>
+    <h2>Cómo se hacen los próximos</h2>
+    <p class="muted small">Los videos no se editan en un editor: se escriben. El contenido de cada
+    placa está en <span class="muted">piezas.js</span>, y el render arma el MP4 con la tipografía
+    y los colores del sitio. Cambiar una placa es cambiar una línea.</p>
+  </div>
+
+  <div class="stack">
+    <pre class="code"><b>cd marketing/video</b>
+npm install
+
+<b>node render.js</b>                    <span class="muted"># los siete videos</span>
+<b>node render.js reel-01-gimnasio</b>   <span class="muted"># uno solo</span>
+
+<span class="muted"># mientras escribís, para no esperar el render entero:</span>
+<b>node previsualizar.js reel-01-gimnasio 2.4 4.2 7.8</b></pre>
+
+    <p class="small">El último comando saca un PNG de cada segundo que le pidas. Sirve para
+    revisar cortes de línea, que son manuales a propósito: a 80 px entran unos 22 caracteres por
+    línea, y un titular que corta donde corresponde se lee mucho mejor que uno que envuelve solo.</p>
+
+    <p class="small">Si algún día cambia la paleta del sitio, se actualiza el bloque de tokens en
+    <span class="muted">lib/estilo.css</span> y salen todos los videos con la identidad nueva.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="label">Medición</span>
+    <h2>Qué mirar, por orden</h2>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Métrica</th><th>Por qué</th></tr></thead>
+      <tbody>
+        <tr><td><b>Guardados</b></td><td>Es la métrica de este contenido. Un reel legal que no se guarda, falló.</td></tr>
+        <tr><td><b>Retención a los 3 segundos</b></td><td>Si cae ahí, el problema es el gancho, no el tema.</td></tr>
+        <tr><td><b>Clics al link</b></td><td>Con UTM por guía: <span class="filename">?utm_source=instagram&amp;utm_medium=reel&amp;utm_campaign=gimnasio</span></td></tr>
+        <tr><td><b>Reclamos publicados ese día</b></td><td>Contra un día normal. Es el único número que importa de verdad.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</div>
+
+<script>
+document.querySelectorAll('.copy-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var texto = btn.closest('.copy').querySelector('.copy-text').innerText;
+    function listo() {
+      btn.textContent = 'Copiado';
+      btn.dataset.done = '1';
+      setTimeout(function () { btn.textContent = 'Copiar'; delete btn.dataset.done; }, 1800);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texto).then(listo, seleccionar);
+    } else {
+      seleccionar();
+    }
+    function seleccionar() {
+      var p = btn.closest('.copy').querySelector('.copy-text');
+      var r = document.createRange();
+      r.selectNodeContents(p);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(r);
+      btn.textContent = 'Seleccionado, copiá con Ctrl+C';
+      setTimeout(function () { btn.textContent = 'Copiar'; }, 2600);
+    }
+  });
+});
+</script>
