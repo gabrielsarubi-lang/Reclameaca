@@ -132,7 +132,7 @@ const R3 = {
   escenas: [
     esc({ dur: 2.7, tema: 'dark', html:
       `${ceja('Resumen de tarjeta', 'on-dark', 0)}
-       ${titular(['Apareció un consumo', 'que no hiciste.'], 'h1', 0.2, 0.1)}
+       ${titular(['Apareció un', 'consumo que', 'no hiciste.'], 'h1', 0.2, 0.09)}
        ${cuerpo('O uno que ya diste de baja. O el mismo cobrado dos veces.', 0.62)}` }),
 
     esc({ dur: 1.8, tema: 'orange', marca: false, wrap: 'center', html:
@@ -168,7 +168,7 @@ const R4 = {
   escenas: [
     esc({ dur: 2.9, tema: 'dark', html:
       `${ceja('Lo que te dicen en el local', 'on-dark', 0)}
-       ${titular(['“Eso lo tenés que ver', 'con la marca.', 'Nosotros solo', 'lo vendimos.”'], 'h1', 0.22, 0.09)}` }),
+       ${titular(['“Eso lo tenés', 'que ver con', 'la marca.', 'Nosotros solo', 'lo vendimos.”'], 'h1', 0.22, 0.08)}` }),
 
     esc({ dur: 1.6, tema: 'orange', marca: false, wrap: 'center', html:
       `<div class="huge" data-anim="pop" data-at="0" data-d="0.5">No</div>
@@ -206,7 +206,7 @@ const H1 = historia('historia-01-encuesta', 'Encuesta: ¿te pasó?', [
   esc({ dur: 6.0, tema: 'dark', wrap: 'top', html:
     `<style>.wrap{bottom:760px}</style>
      ${ceja('Contanos', 'on-dark', 0)}
-     ${titular(['¿Alguna vez te dijeron', 'que la baja "solo se', 'hace en la sede"?'], 'h2', 0.2, 0.1)}
+     ${titular(['¿Alguna vez te dijeron', 'que la baja “solo se', 'hace en la sede”?'], 'h2', 0.2, 0.1)}
      ${cuerpo('Spoiler: si te anotaste online, no es cierto.', 0.7)}` }),
 ]);
 

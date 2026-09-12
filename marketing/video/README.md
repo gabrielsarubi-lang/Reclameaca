@@ -52,7 +52,8 @@ Todo está en `piezas.js`. Los bloques que vas a usar:
 
 Los cortes de línea de los titulares son **manuales**, a propósito: un titular
 que corta donde corresponde se lee mucho mejor que uno que envuelve solo.
-Como referencia, a 80 px entran unos 22 caracteres por línea.
+Como referencia entran unos 22 caracteres por línea en un `h2` de 80 px, y unos
+14 en un `h1` de 104 px.
 
 Las animaciones se controlan con atributos: `data-anim` (`sube`, `pop`, `fade`,
 `linea`, `barra`, `regla`), `data-at` (segundo en que arranca) y `data-d` (cuánto dura).

@@ -174,7 +174,7 @@ td b{font-weight:600}
 td.week{font-family:var(--mono); color:var(--ink-3); font-variant-numeric:tabular-nums; white-space:nowrap}
 
 /* ---------- referencia de identidad ---------- */
-.swatches{display:grid; grid-template-columns:repeat(auto-fill,minmax(128px,1fr)); gap:12px}
+.swatches{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
 .sw{border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--surface)}
 .sw .chip{height:62px}
 .sw .info{padding:9px 11px; display:flex; flex-direction:column; gap:1px}
@@ -198,6 +198,7 @@ pre.code{
   padding:15px 17px; overflow-x:auto; margin:0;
 }
 pre.code b{color:var(--ink); font-weight:500}
+pre.code .muted{color:var(--ink-3)}
 
 .note{
   border-left:3px solid var(--accent); padding:2px 0 2px 17px;
@@ -214,6 +215,7 @@ pre.code b{color:var(--ink); font-weight:500}
   .story{display:grid; grid-template-columns:150px 1fr; gap:20px; align-items:start}
 }
 @media (max-width:560px){
+  .swatches{grid-template-columns:repeat(2,1fr)}
   .piece{grid-template-columns:1fr; gap:20px}
   .piece .screen{max-width:230px}
   .story{grid-template-columns:1fr}
