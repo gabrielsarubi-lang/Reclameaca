@@ -1,0 +1,5 @@
+node_modules
+.DS_Store
+marketing/video/salida/previa/
+marketing/video/salida/render.log
+marketing/video/.tmp-*.html
