@@ -150,8 +150,38 @@ button.copy-btn:hover{border-color:var(--accent); color:var(--accent-ink)}
 button.copy-btn:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
 button.copy-btn[data-done="1"]{color:#1e9e62; border-color:#1e9e62}
 
+/* ---------- carruseles: tira horizontal de láminas 4:5 ---------- */
+.carousel{display:flex; flex-direction:column; gap:16px}
+.strip{
+  display:flex; gap:12px; overflow-x:auto; padding-bottom:8px;
+  scroll-snap-type:x mandatory; scrollbar-width:thin;
+}
+.strip img{
+  flex:none; width:188px; aspect-ratio:4/5; object-fit:cover;
+  border-radius:10px; border:1px solid var(--line); background:var(--surface);
+  scroll-snap-align:start; display:block;
+}
+.strip-hint{font-size:12.5px; color:var(--ink-3); font-family:var(--mono)}
+
+.carousels{display:flex; flex-direction:column}
+.carousel-row{
+  display:grid; grid-template-columns:1fr; gap:22px;
+  padding-block:38px; border-top:1px solid var(--line);
+}
+.carousel-row:last-child{border-bottom:1px solid var(--line)}
+.carousel-top{display:flex; flex-wrap:wrap; gap:10px 22px; align-items:baseline; justify-content:space-between}
+.carousel-top h3{flex:1 1 auto; min-width:0}
+
+@media (min-width:861px){
+  .strip img{width:212px}
+}
+
 /* ---------- historias ---------- */
 .stories{display:grid; grid-template-columns:repeat(3,1fr); gap:26px}
+.stories-5{grid-template-columns:repeat(5,1fr); gap:18px}
+.stories-5 h3{font-size:17px}
+.stories-5 .sticker-note{font-size:12.5px; padding:9px 11px}
+.stories-5 .filename{font-size:11.5px}
 .story{display:flex; flex-direction:column; gap:14px}
 .story .screen{border-radius:14px}
 .story-body{display:flex; flex-direction:column; gap:7px}
@@ -211,7 +241,7 @@ pre.code .muted{color:var(--ink-3)}
 
 @media (max-width:860px){
   .piece{grid-template-columns:196px 1fr; gap:24px}
-  .stories{grid-template-columns:1fr; gap:34px}
+  .stories, .stories-5{grid-template-columns:1fr; gap:34px}
   .story{display:grid; grid-template-columns:150px 1fr; gap:20px; align-items:start}
 }
 @media (max-width:560px){
@@ -245,16 +275,16 @@ pre.code .muted{color:var(--ink-3)}
 
   <div class="rule-accent"></div>
 
-  <h1>Cuatro reels y tres historias,<br>listos para publicar.</h1>
+  <h1>Dos campañas,<br>diecisiete piezas listas.</h1>
   <p class="lede">Todo el contenido sale de las guías legales del sitio y usa los colores,
   la tipografía y el logo de <span class="muted">reclameaca.com.ar</span>. Cada pieza viene
-  con su copy escrito y el video ya renderizado: se descarga, se sube y se publica.</p>
+  con su copy escrito y el archivo ya renderizado: se descarga, se sube y se publica.</p>
 
   <div class="facts">
-    <div class="fact"><span class="label">Piezas</span><b>7</b></div>
-    <div class="fact"><span class="label">Duración total</span><b>1:37</b></div>
-    <div class="fact"><span class="label">Formato</span><b>1080×1920 · 30 fps · H.264</b></div>
-    <div class="fact"><span class="label">Audio</span><b>se elige en la app</b></div>
+    <div class="fact"><span class="label">Reels</span><b>6</b></div>
+    <div class="fact"><span class="label">Carruseles</span><b>3</b></div>
+    <div class="fact"><span class="label">Historias</span><b>8</b></div>
+    <div class="fact"><span class="label">Formato</span><b>9:16 y 4:5 · 30 fps · H.264</b></div>
   </div>
 </header>
 
@@ -265,8 +295,309 @@ el video igual funciona con el sonido apagado, que es como lo mira la mayoría.<
 
 <section>
   <div class="sec-head">
-    <span class="label">Reels</span>
-    <h2>Las cuatro piezas de feed</h2>
+    <span class="label">Campaña 2 · Comprar y viajar</span>
+    <h2>Diez piezas sobre comprar a distancia</h2>
+    <p class="muted small">Elegí este tema por dos motivos: arranca la primavera y es cuando se
+    reservan los pasajes y los paquetes de verano, y porque las tres guías que la sostienen
+    comparten un mismo hilo — compraste a distancia y algo salió mal. Eso deja que las piezas se
+    referencien entre sí en vez de ser diez posteos sueltos.</p>
+  </div>
+
+  <div class="sec-head" style="margin-bottom:8px">
+    <h3>Tres carruseles</h3>
+  </div>
+  <div class="carousels">
+      <article class="carousel-row">
+        <div class="carousel-top">
+          <h3>Cinco derechos en toda compra por internet</h3>
+          <span class="strip-hint">7 láminas · 1080×1350</span>
+        </div>
+        <p class="small">El más guardable de los tres. Cada lámina es un derecho con su artículo, y la última cierra con el reclamo. Va después del reel 5, cuando el tema ya está abierto.</p>
+        <div class="carousel">
+          <div class="strip">
+            <img src="video/salida/carrusel-01-comprar-online/01.png" alt="Lámina 1 de 7" loading="lazy">
+            <img src="video/salida/carrusel-01-comprar-online/02.png" alt="Lámina 2 de 7" loading="lazy">
+            <img src="video/salida/carrusel-01-comprar-online/03.png" alt="Lámina 3 de 7" loading="lazy">
+            <img src="video/salida/carrusel-01-comprar-online/04.png" alt="Lámina 4 de 7" loading="lazy">
+            <img src="video/salida/carrusel-01-comprar-online/05.png" alt="Lámina 5 de 7" loading="lazy">
+            <img src="video/salida/carrusel-01-comprar-online/06.png" alt="Lámina 6 de 7" loading="lazy">
+            <img src="video/salida/carrusel-01-comprar-online/07.png" alt="Lámina 7 de 7" loading="lazy">
+          </div>
+          <p class="strip-hint">carrusel-01-comprar-online/ · deslizá para ver las 7 →</p>
+        </div>
+        <div class="copy">
+          <div class="copy-bar"><span class="label">Copy para el posteo</span><button class="copy-btn" type="button">Copiar</button></div>
+          <p class="copy-text">Comprás por internet todo el tiempo. Estos cinco derechos casi nunca los usás.
+
+1. Podés arrepentirte dentro de los 10 días de recibir el producto, sin dar explicaciones (art. 34, Ley 24.240).
+2. Devolverlo no te puede costar nada: el envío de vuelta lo paga el vendedor.
+3. El Botón de arrepentimiento tiene que estar a simple vista en la web, sin pedirte registro, y mandarte el código de tu pedido en 24 horas (Disposición 954/2025).
+4. Si no llegó o no es lo que compraste, elegís vos: que cumplan, otro producto equivalente, o que te devuelvan la plata. Más los daños (art. 10 bis).
+5. Si se rompe, tiene 6 meses de garantía legal, 3 si es usado. Y el traslado para repararlo lo paga quien da la garantía.
+
+No aplica el arrepentimiento si el producto se hizo a tu medida, si desprecintaste música o programas, si ya lo usaste, o si lo compraste para revender.
+
+Guardalo para la próxima compra. reclameaca.com.ar/guias
+
+#ComprasOnline #DefensaDelConsumidor #MercadoLibre #DerechosDelConsumidor #Ley24240 #Argentina #TusDerechos #ReclameAca</p>
+        </div>
+      </article>
+
+      <article class="carousel-row">
+        <div class="carousel-top">
+          <h3>La agencia no se puede lavar las manos</h3>
+          <span class="strip-hint">6 láminas · 1080×1350</span>
+        </div>
+        <p class="small">Apunta a quien está reservando el verano ahora. La lámina 5, la naranja, es la que más se comparte: los pasajes de avión son la excepción y casi nadie lo sabe.</p>
+        <div class="carousel">
+          <div class="strip">
+            <img src="video/salida/carrusel-02-agencia-viajes/01.png" alt="Lámina 1 de 6" loading="lazy">
+            <img src="video/salida/carrusel-02-agencia-viajes/02.png" alt="Lámina 2 de 6" loading="lazy">
+            <img src="video/salida/carrusel-02-agencia-viajes/03.png" alt="Lámina 3 de 6" loading="lazy">
+            <img src="video/salida/carrusel-02-agencia-viajes/04.png" alt="Lámina 4 de 6" loading="lazy">
+            <img src="video/salida/carrusel-02-agencia-viajes/05.png" alt="Lámina 5 de 6" loading="lazy">
+            <img src="video/salida/carrusel-02-agencia-viajes/06.png" alt="Lámina 6 de 6" loading="lazy">
+          </div>
+          <p class="strip-hint">carrusel-02-agencia-viajes/ · deslizá para ver las 6 →</p>
+        </div>
+        <div class="copy">
+          <div class="copy-bar"><span class="label">Copy para el posteo</span><button class="copy-btn" type="button">Copiar</button></div>
+          <p class="copy-text">"Nosotros solo somos intermediarios." Es la frase que más se escucha cuando un viaje se cae, y es la que menos se sostiene.
+
+El art. 40 de la Ley 24.240 dice que cuando el daño viene de la prestación del servicio responden todos los que intervinieron, y que esa responsabilidad es solidaria. La agencia no se libera mandándote a hablar con el hotel o con la aerolínea.
+
+Si lo que te vendieron no se cumple, el art. 10 bis te deja elegir: que cumplan, un servicio equivalente, o que te devuelvan la plata. En los tres casos podés reclamar además los daños.
+
+¿Y si querés cancelar vos? Si contrataste a distancia un hotel, un auto, una excursión o un micro, tenés 10 días corridos para arrepentirte, avisando al menos 24 horas antes del servicio (Disposición 954/2025).
+
+Ojo con los pasajes de avión: tienen regla propia y solo permiten arrepentimiento si la tarifa que elegiste admite devolución. Revisá las condiciones antes de pagar, no después.
+
+Guía completa en reclameaca.com.ar/guias
+
+#AgenciaDeViajes #Turismo #DefensaDelConsumidor #Vacaciones #DerechosDelConsumidor #Argentina #TusDerechos #ReclameAca</p>
+        </div>
+      </article>
+
+      <article class="carousel-row">
+        <div class="carousel-top">
+          <h3>Qué te deben según cuánto esperás</h3>
+          <span class="strip-hint">6 láminas · 1080×1350</span>
+        </div>
+        <p class="small">Una tabla convertida en carrusel. Es el formato que mejor funciona para algo que se consulta parado en el aeropuerto, con el teléfono en la mano.</p>
+        <div class="carousel">
+          <div class="strip">
+            <img src="video/salida/carrusel-03-demoras-aeropuerto/01.png" alt="Lámina 1 de 6" loading="lazy">
+            <img src="video/salida/carrusel-03-demoras-aeropuerto/02.png" alt="Lámina 2 de 6" loading="lazy">
+            <img src="video/salida/carrusel-03-demoras-aeropuerto/03.png" alt="Lámina 3 de 6" loading="lazy">
+            <img src="video/salida/carrusel-03-demoras-aeropuerto/04.png" alt="Lámina 4 de 6" loading="lazy">
+            <img src="video/salida/carrusel-03-demoras-aeropuerto/05.png" alt="Lámina 5 de 6" loading="lazy">
+            <img src="video/salida/carrusel-03-demoras-aeropuerto/06.png" alt="Lámina 6 de 6" loading="lazy">
+          </div>
+          <p class="strip-hint">carrusel-03-demoras-aeropuerto/ · deslizá para ver las 6 →</p>
+        </div>
+        <div class="copy">
+          <div class="copy-bar"><span class="label">Copy para el posteo</span><button class="copy-btn" type="button">Copiar</button></div>
+          <p class="copy-text">A las 4 horas de demora te tienen que dar de comer. A las 8, hotel.
+
+El artículo 43 del reglamento aprobado por el Decreto 809/2024 lo fija por tramos, así que no queda a criterio del mostrador:
+
+· Hasta 4 horas: sin obligación de asistencia, salvo que la demora caiga entre la medianoche y las 6 de la mañana.
+· De 4 a 8 horas: comidas y refrescos suficientes.
+· Más de 8 horas: comidas, alojamiento y los traslados hasta el hotel y de vuelta.
+
+Y si directamente te cancelan el vuelo, el reintegro se paga dentro de los 30 días de pedirlo, por el mismo medio con el que pagaste y en la misma moneda. Pedilo siempre por escrito: los 30 días corren desde ese momento y es lo que vas a tener que demostrar.
+
+Los gastos que te generó la cancelación —un pasaje nuevo, una noche de hotel perdida, traslados— se reclaman como daños. No se pagan solos: hay que pedirlos y demostrarlos con comprobantes.
+
+reclameaca.com.ar/guias
+
+#Vuelos #Aerolineas #DefensaDelConsumidor #ANAC #Viajes #Argentina #TusDerechos #ReclameAca</p>
+        </div>
+      </article>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head" style="margin-bottom:8px"><h3>Dos reels</h3></div>
+  <div class="pieces">
+
+    <article class="piece">
+      <div class="screen">
+        <video src="video/salida/reel-05-arrepentimiento.mp4" poster="video/salida/posters/reel-05-arrepentimiento.jpg"
+               controls muted loop playsinline preload="metadata"></video>
+      </div>
+      <div class="piece-body">
+        <div class="piece-head">
+          <h3>Botón de arrepentimiento</h3>
+          <p class="filename">reel-05-arrepentimiento.mp4</p>
+        </div>
+        <p class="small">El tema más universal de la campaña: cualquiera que compró algo por
+        internet se reconoce. La placa que más sorprende no es la de los 10 días sino la del
+        envío de vuelta, porque casi todo el mundo asume que lo paga.</p>
+        <div>
+          <div class="beats" role="img" aria-label="Siete placas: gancho, quiebre, tres placas legales, las excepciones y cierre">
+            <i class="b-dark" style="flex:2.8"></i><i class="b-orange" style="flex:1.7"></i><i class="b-light" style="flex:3.6"></i><i class="b-light" style="flex:3.4"></i><i class="b-light" style="flex:3.5"></i><i class="b-dark" style="flex:3.3"></i><i class="b-navy" style="flex:3.2"></i>
+          </div>
+        </div>
+        <div class="meta"><span>21,5 s</span><span>7 placas</span><span>Ley 24.240 · Disp. 954/2025</span></div>
+        <div class="copy">
+          <div class="copy-bar"><span class="label">Copy para el posteo</span><button class="copy-btn" type="button">Copiar</button></div>
+          <p class="copy-text">Compraste online, te llegó, y no era lo que esperabas. No hace falta que discutas con nadie: tenés 10 días.
+
+El art. 34 de la Ley 24.240 te deja revocar la compra dentro de los 10 días de recibir el producto, sin explicar por qué. Y ejercer ese derecho no te puede implicar ningún gasto: el envío de vuelta lo paga el vendedor.
+
+Para pedirlo, la tienda tiene que tener un Botón de arrepentimiento a simple vista desde el primer acceso, sin pedirte registro ni ningún otro trámite, y mandarte el código de tu pedido dentro de las 24 horas (Disposición 954/2025). Si no lo encontrás, eso ya es un incumplimiento.
+
+Cuándo no aplica: si el producto se hizo a tu medida, si desprecintaste música, películas o programas, si ya lo usaste, o si lo compraste para revender.
+
+Guardalo. reclameaca.com.ar/guias
+
+#ComprasOnline #BotonDeArrepentimiento #DefensaDelConsumidor #MercadoLibre #Ley24240 #Argentina #TusDerechos #ReclameAca</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="piece">
+      <div class="screen">
+        <video src="video/salida/reel-06-vuelo-cancelado.mp4" poster="video/salida/posters/reel-06-vuelo-cancelado.jpg"
+               controls muted loop playsinline preload="metadata"></video>
+      </div>
+      <div class="piece-body">
+        <div class="piece-head">
+          <h3>Me cancelaron el vuelo</h3>
+          <p class="filename">reel-06-vuelo-cancelado.mp4</p>
+        </div>
+        <p class="small">Tema de temporada y de mucha bronca acumulada. El giro está en la
+        segunda placa: no se trata de qué te quieran ofrecer, sino de que las opciones están
+        escritas y el reintegro tiene plazo.</p>
+        <div>
+          <div class="beats" role="img" aria-label="Siete placas: gancho, quiebre, dos placas legales, la tabla de demoras, la ANAC y cierre">
+            <i class="b-dark" style="flex:2.8"></i><i class="b-orange" style="flex:1.8"></i><i class="b-light" style="flex:3.6"></i><i class="b-light" style="flex:3.4"></i><i class="b-light" style="flex:3.5"></i><i class="b-dark" style="flex:2.9"></i><i class="b-navy" style="flex:3.2"></i>
+          </div>
+        </div>
+        <div class="meta"><span>21,2 s</span><span>7 placas</span><span>Decreto 809/2024 · ANAC</span></div>
+        <div class="copy">
+          <div class="copy-bar"><span class="label">Copy para el posteo</span><button class="copy-btn" type="button">Copiar</button></div>
+          <p class="copy-text">"Su vuelo fue cancelado." Lo que pasa después no lo decide el mostrador.
+
+El art. 41 del reglamento aprobado por el Decreto 809/2024 obliga a la aerolínea a ofrecerte un lugar en el vuelo siguiente, un pasaje en otra aerolínea con la que tenga acuerdo, o llevarte a destino por otra ruta. Si ninguna de esas opciones te sirve, podés pedir el reintegro.
+
+El reintegro se paga dentro de los 30 días de pedirlo, por el mismo medio con el que pagaste y en la misma moneda (art. 47). Pedilo por escrito y guardá la fecha: los 30 días corren desde ese momento.
+
+Si te dejan esperando: de 4 a 8 horas te deben comidas y refrescos; de 8 en adelante, además alojamiento y traslados (art. 43).
+
+La aerolínea tiene 30 días hábiles para contestarte y está obligada a darte un número de reclamo. Si no contesta, va a la ANAC, con conciliación gratuita y sin abogado.
+
+Si compraste por una agencia, el reintegro se pide por medio de esa agencia.
+
+reclameaca.com.ar/guias
+
+#VueloCancelado #Aerolineas #DefensaDelConsumidor #ANAC #Viajes #Argentina #TusDerechos #ReclameAca</p>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <h3>Cinco historias</h3>
+    <p class="muted small">Dos en video y tres en imagen. Las cinco dejan libre la franja de
+    abajo para el sticker. La de la caja de preguntas no es contenido: es investigación — lo que
+    respondan te dice qué guía escribir el mes que viene, con datos en vez de intuición.</p>
+  </div>
+
+  <div class="stories stories-5">
+    <div class="story">
+      <div class="screen">
+        <video src="video/salida/historia-07-encuesta-devolucion.mp4" poster="video/salida/posters/historia-07-encuesta-devolucion.jpg"
+               controls muted loop playsinline preload="metadata"></video>
+      </div>
+      <div class="story-body">
+        <h3>Encuesta</h3>
+        <p class="filename">historia-07 · video 6 s</p>
+        <div class="sticker-note"><b>Encuesta:</b> Sí, sin drama / Me lo hicieron imposible</div>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="screen"><img src="video/salida/historia-04-boton-arrepentimiento.png" alt="10 días para arrepentirte de una compra online" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      <div class="story-body">
+        <h3>10 días</h3>
+        <p class="filename">historia-04 · imagen</p>
+        <div class="sticker-note"><b>Link:</b> /guias/devolver-compra-mercado-libre</div>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="screen">
+        <video src="video/salida/historia-08-vuelo-cancelado.mp4" poster="video/salida/posters/historia-08-vuelo-cancelado.jpg"
+               controls muted loop playsinline preload="metadata"></video>
+      </div>
+      <div class="story-body">
+        <h3>Guía de vuelos</h3>
+        <p class="filename">historia-08 · video 6 s</p>
+        <div class="sticker-note"><b>Link:</b> /guias/flybondi-vuelo-cancelado</div>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="screen"><img src="video/salida/historia-05-demoras-vuelo.png" alt="Lo que te deben por tramos de demora" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      <div class="story-body">
+        <h3>Demoras</h3>
+        <p class="filename">historia-05 · imagen</p>
+        <div class="sticker-note"><b>Link:</b> texto "Qué te deben"</div>
+      </div>
+    </div>
+
+    <div class="story">
+      <div class="screen"><img src="video/salida/historia-06-caja-preguntas.png" alt="Con qué empresa estás peleando ahora mismo" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+      <div class="story-body">
+        <h3>Caja de preguntas</h3>
+        <p class="filename">historia-06 · imagen</p>
+        <div class="sticker-note"><b>Caja:</b> ¿Con qué empresa estás peleando?</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-head" style="margin:44px 0 22px"><h3>Orden de publicación</h3>
+    <p class="muted small">Dos semanas. El hilo va de lo general (comprar) a lo específico
+    (viajar), y cada historia prepara el terreno del posteo que viene.</p>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Día</th><th>Pieza</th><th>Por qué ahí</th></tr></thead>
+      <tbody>
+        <tr><td class="week">Lun 1</td><td>Historia: encuesta de devoluciones</td><td>Abre el tema y te da una métrica antes de invertir en el posteo</td></tr>
+        <tr><td class="week">Mar 1</td><td><b>Reel 5 · Botón de arrepentimiento</b></td><td>El tema más universal de los cinco</td></tr>
+        <tr><td class="week">Mié 1</td><td>Historia: 10 días (imagen) + link</td><td>Recoge a quien vio el reel y no entró</td></tr>
+        <tr><td class="week">Jue 1</td><td><b>Carrusel 1 · Cinco derechos</b></td><td>Profundiza lo que el reel abrió. Es el más guardable</td></tr>
+        <tr><td class="week">Sáb 1</td><td>Historia: caja de preguntas</td><td>El fin de semana es cuando más responden</td></tr>
+        <tr><td class="week">Lun 2</td><td>Historia: nueva guía de vuelo (video)</td><td>Cambia de tema y anuncia la segunda mitad</td></tr>
+        <tr><td class="week">Mar 2</td><td><b>Reel 6 · Vuelo cancelado</b></td><td>Entra en la parte de viajes</td></tr>
+        <tr><td class="week">Jue 2</td><td><b>Carrusel 3 · Demoras</b></td><td>La tabla por tramos es lo más práctico de todo</td></tr>
+        <tr><td class="week">Vie 2</td><td>Historia: demoras (imagen) + link</td><td>Antes del fin de semana, que es cuando se vuela</td></tr>
+        <tr><td class="week">Sáb 2</td><td><b>Carrusel 2 · Agencias de viaje</b></td><td>Cierra apuntando a la reserva del verano</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note" style="margin-top:26px"><b>Por qué los reels van los martes y los carruseles
+  los jueves:</b> el reel trae gente nueva y el carrusel convierte a la que ya te sigue. Al
+  revés, el carrusel se lo come una audiencia que todavía no sabe quién sos.</div>
+
+  <div class="note" style="margin-top:22px">Hay un dato que dejé afuera a propósito. La guía de
+  agencias cita un fallo de junio de 2026 que condenó en conjunto a una aerolínea y a una agencia
+  online. Es un caso puntual que llegó a juicio, no una regla automática, y en una placa —sin el
+  matiz que sí tiene la guía— se lee como una promesa de resultado. Si lo querés usar, que sea en
+  el copy y con la aclaración, nunca en la imagen.</div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="label">Campaña 1 · Tus derechos</span>
+    <h2>Los cuatro primeros reels</h2>
     <p class="muted small">La barra de ritmo muestra cómo está armado cada video: cada segmento
     es una placa y su ancho es lo que dura. El gancho siempre entra antes del segundo 2,
     y el corte de color naranja es el quiebre.</p>
@@ -437,7 +768,7 @@ Guía completa en reclameaca.com.ar/guias
 
 <section>
   <div class="sec-head">
-    <span class="label">Historias</span>
+    <span class="label">Campaña 1 · Historias</span>
     <h2>Tres historias con lugar para el sticker</h2>
     <p class="muted small">Las tres dejan vacía a propósito la franja de abajo. Ahí va el sticker,
     encima del video, ya dentro de la app. Si lo ponés más arriba tapa el texto.</p>
@@ -491,7 +822,7 @@ Guía completa en reclameaca.com.ar/guias
 
 <section>
   <div class="sec-head">
-    <span class="label">Calendario</span>
+    <span class="label">Campaña 1 · Calendario</span>
     <h2>Cuatro semanas</h2>
     <p class="muted small">Tres piezas de feed por semana y una historia por día hábil. El patrón
     que se repite es siempre el mismo: la excusa que te dicen, qué dice la ley, dejalo público.

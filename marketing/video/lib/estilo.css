@@ -19,10 +19,34 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
+html,body{width:var(--W,1080px);height:var(--H,1920px);overflow:hidden;background:#000}
 body{font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
 
-#stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+#stage{position:relative;width:var(--W,1080px);height:var(--H,1920px);overflow:hidden}
+
+/* Formato de feed (carrusel 4:5): no hay UI de Instagram encima, así que los
+   márgenes se achican y la firma se sube. */
+body.feed{--safe-top:104px;--safe-bottom:150px;--gutter:88px}
+body.feed .bug{bottom:64px;justify-content:flex-start;left:var(--gutter);right:var(--gutter)}
+body.feed #prog{display:none}
+
+/* Indicador de lámina del carrusel */
+.pag{position:absolute;top:60px;right:var(--gutter);font-size:26px;font-weight:700;
+  letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.on-dark .pag{color:#7f97b1}
+.on-light .pag{color:#8a97a6}
+.on-orange .pag{color:rgba(255,255,255,.7)}
+
+/* Flecha de "seguí deslizando" */
+.swipe{position:absolute;bottom:64px;right:var(--gutter);display:flex;align-items:center;gap:12px;
+  font-size:27px;font-weight:700;letter-spacing:-.01em}
+.on-dark .swipe{color:#fff}
+.on-light .swipe{color:var(--navy-900)}
+.on-orange .swipe{color:#fff}
+.swipe .arr{width:46px;height:46px;border-radius:50%;background:var(--orange-500);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:25px;flex:none}
+/* sobre fondo naranja se invierte, si no la flecha desaparece */
+.on-orange .swipe .arr{background:#fff;color:var(--orange-500)}
 
 .scene{position:absolute;inset:0;display:none;overflow:hidden}
 .scene.on{display:block}

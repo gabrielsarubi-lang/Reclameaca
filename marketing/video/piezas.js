@@ -1,69 +1,8 @@
-/* Piezas de video para Reclame Acá.
+/* Piezas de VIDEO para Reclame Acá: reels e historias animadas.
    Contenido legal tomado de las guías del propio sitio (reclameaca.com.ar/guias).
    Cada escena es HTML plano; el motor la anima según data-anim / data-at / data-d. */
 
-const LOGO = (s) => `<svg class="mk" viewBox="0 0 64 64" width="${s}" height="${s}" style="width:${s}px;height:${s}px">
-  <circle cx="32" cy="32" r="32" fill="#0f2338"/>
-  <path d="M17 27 L36 17 L36 47 L17 37 Z" fill="#fff" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M43 23 L50 19" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
-  <path d="M44 32 L52 32" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
-  <path d="M43 41 L50 45" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
-</svg>`;
-
-const bug = () => `<div class="bug" data-anim="fade" data-at="0.35" data-d="0.5">
-  ${LOGO(60)}<div class="tx">Reclame Acá<small>reclameaca.com.ar</small></div></div>`;
-
-const TEMAS = {
-  dark:   { bg: 'bg-dark',   tono: 'on-dark',   glow: true  },
-  navy:   { bg: 'bg-navy',   tono: 'on-dark',   glow: true  },
-  light:  { bg: 'bg-light',  tono: 'on-light',  glow: false },
-  orange: { bg: 'bg-orange', tono: 'on-orange', glow: false },
-};
-
-function esc({ dur, tema = 'dark', marca = true, wrap = '', html }) {
-  const t = TEMAS[tema];
-  return `<section class="scene ${t.tono}" data-dur="${dur}">
-  <div class="bg ${t.bg}"></div>
-  ${t.glow ? '<div class="glow"></div><div class="glow glow-b"></div>' : ''}
-  <div class="wrap ${wrap}">${html}</div>
-  ${marca ? bug() : ''}
-</section>`;
-}
-
-/* Bloques reutilizables ------------------------------------------------ */
-
-const ceja = (txt, estilo = 'on-dark', at = 0) =>
-  `<span class="eyebrow ${estilo}" data-anim="sube" data-at="${at}" data-d="0.5" data-dist="26"><i class="dot"></i>${txt}</span>`;
-
-// Titular revelado línea por línea con máscara
-const titular = (lineas, tag = 'h2', at = 0.12, paso = 0.09) =>
-  `<${tag}>${lineas.map((l, i) => `<span style="display:block;overflow:hidden"><span style="display:block" data-anim="linea" data-at="${(at + i * paso).toFixed(2)}" data-d="0.62">${l}</span></span>`).join('')}</${tag}>`;
-
-const cuerpo = (txt, at = 0.5) =>
-  `<p class="body" data-anim="sube" data-at="${at}" data-d="0.6" data-dist="34">${txt}</p>`;
-
-// Placa legal: regla naranja + cita de artículo + titular + bajada
-const placaLey = ({ dur, articulo, lineas, texto }) => esc({
-  dur, tema: 'light',
-  html: `${ceja(articulo, 'law', 0)}
-    <div class="ruled">
-      <i class="rule" data-anim="regla" data-at="0.1" data-d="0.7"></i>
-      ${titular(lineas, 'h2', 0.2)}
-    </div>
-    ${texto ? cuerpo(texto, 0.6) : ''}`
-});
-
-const li = (n, txt, sub, at) =>
-  `<div class="li" data-anim="sube" data-at="${at}" data-d="0.55" data-dist="40">
-     <span class="n">${n}</span><span class="tx">${txt}${sub ? `<small>${sub}</small>` : ''}</span></div>`;
-
-const cierre = (dur, titulo, sub) => esc({
-  dur, tema: 'navy', marca: false, wrap: 'center',
-  html: `<div data-anim="pop" data-at="0" data-d="0.7" style="align-self:center">${LOGO(188).replace('class="mk"', 'class="cta-logo"')}</div>
-    ${titular(titulo, 'h2', 0.3)}
-    ${sub ? `<p class="body" data-anim="sube" data-at="0.62" data-d="0.6" data-dist="30">${sub}</p>` : ''}
-    <div class="url" data-anim="sube" data-at="0.8" data-d="0.6" data-dist="26">reclameaca.com.ar</div>`
-});
+const { LOGO, esc, ceja, titular, cuerpo, placaLey, li, cierre } = require('./lib/bloques.js');
 
 /* ====================================================================== */
 /*  REELS                                                                  */
@@ -227,4 +166,95 @@ const H3 = historia('historia-03-garantia', 'Dato: garantía legal', [
      ${cuerpo('Aunque en el local te digan que ya se venció la del fabricante.', 0.8)}` }),
 ]);
 
-module.exports = [R1, R2, R3, R4, H1, H2, H3];
+/* ====================================================================== */
+/*  CAMPAÑA "COMPRAR Y VIAJAR" — reels 5 y 6                              */
+/* ====================================================================== */
+
+const R5 = {
+  id: 'reel-05-arrepentimiento',
+  titulo: 'Botón de arrepentimiento',
+  formato: 'reel',
+  escenas: [
+    esc({ dur: 2.8, tema: 'dark', html:
+      `${ceja('Compraste por internet', 'on-dark', 0)}
+       ${titular(['Te llegó y no', 'era lo que', 'esperabas.'], 'h1', 0.2, 0.09)}
+       ${cuerpo('No hace falta que discutas con nadie.', 0.6)}` }),
+
+    esc({ dur: 1.7, tema: 'orange', marca: false, wrap: 'center', html:
+      `<div class="huge" data-anim="pop" data-at="0" data-d="0.5">10 días</div>
+       ${cuerpo('Para arrepentirte. Sin explicar nada.', 0.45)}` }),
+
+    placaLey({ dur: 3.6, articulo: 'Ley 24.240 · Art. 34',
+      lineas: ['Podés revocar', 'la compra dentro', 'de los 10 días.'],
+      texto: 'Contados desde que recibís el producto. Si el último día cae inhábil, se corre al primer día hábil siguiente.' }),
+
+    placaLey({ dur: 3.4, articulo: 'Devolver es gratis',
+      lineas: ['El envío de vuelta', 'lo paga el vendedor.'],
+      texto: 'La ley dice que ejercer este derecho no te puede implicar ningún gasto. Si te lo quieren cobrar, es un incumplimiento.' }),
+
+    placaLey({ dur: 3.5, articulo: 'Disposición 954/2025',
+      lineas: ['El Botón de', 'arrepentimiento va', 'a simple vista.'],
+      texto: 'Desde el primer acceso, sin pedirte registro ni ningún otro trámite. Y te mandan el código de tu pedido en 24 horas.' }),
+
+    esc({ dur: 3.3, tema: 'dark', html:
+      `${ceja('Cuándo no aplica', 'on-dark', 0)}
+       ${li('1', 'Si se hizo a tu medida', 'O con tus especificaciones', 0.3)}
+       ${li('2', 'Si lo desprecintaste', 'Música, películas o programas', 0.52)}
+       ${li('3', 'Si ya lo usaste', 'O lo compraste para revender', 0.74)}` }),
+
+    cierre(3.2, ['¿Te lo niegan?', 'Publicá el reclamo.'], 'Gratis, público y sin vueltas.'),
+  ],
+};
+
+const R6 = {
+  id: 'reel-06-vuelo-cancelado',
+  titulo: 'Me cancelaron el vuelo',
+  formato: 'reel',
+  escenas: [
+    esc({ dur: 2.8, tema: 'dark', html:
+      `${ceja('En el aeropuerto', 'on-dark', 0)}
+       ${titular(['“Su vuelo fue', 'cancelado.”'], 'h1', 0.2, 0.1)}
+       ${cuerpo('Lo que pasa después no lo decide el mostrador.', 0.6)}` }),
+
+    esc({ dur: 1.8, tema: 'orange', marca: false, wrap: 'center', html:
+      `<div class="huge" data-anim="pop" data-at="0" data-d="0.5">Elegís<br>vos</div>` }),
+
+    placaLey({ dur: 3.6, articulo: 'Decreto 809/2024 · Art. 41',
+      lineas: ['Te tienen que ofrecer', 'otro vuelo, otra', 'aerolínea u otra ruta.'],
+      texto: 'Y si ninguna de esas opciones te sirve, podés pedir que te devuelvan la plata del pasaje.' }),
+
+    placaLey({ dur: 3.4, articulo: 'Art. 47 · El reintegro',
+      lineas: ['Se paga dentro', 'de los 30 días.'],
+      texto: 'Por el mismo medio con el que pagaste y en la misma moneda. Pedilo por escrito: los 30 días corren desde ese momento.' }),
+
+    esc({ dur: 3.5, tema: 'light', html:
+      `${ceja('Si te dejan esperando', 'law', 0)}
+       ${li('4h', 'Comidas y refrescos', 'De 4 a 8 horas de demora', 0.3)}
+       ${li('8h', 'Más alojamiento y traslados', 'De 8 horas en adelante', 0.55)}
+       ${cuerpo('Artículo 43. No es a criterio del mostrador.', 0.8)}` }),
+
+    esc({ dur: 2.9, tema: 'dark', html:
+      `${titular(['¿No te contestan?'], 'h2', 0.05)}
+       ${cuerpo('La aerolínea tiene 30 días hábiles y está obligada a darte un número de reclamo. Después va a la ANAC, con conciliación gratuita y sin abogado.', 0.3)}` }),
+
+    cierre(3.2, ['Guardá los tickets.', 'Y dejalo público.'], 'Los gastos hay que pedirlos y demostrarlos.'),
+  ],
+};
+
+const H7 = historia('historia-07-encuesta-devolucion', 'Encuesta: devoluciones', [
+  esc({ dur: 6.0, tema: 'dark', wrap: 'top', html:
+    `<style>.wrap{bottom:760px}</style>
+     ${ceja('Contanos', 'on-dark', 0)}
+     ${titular(['¿Alguna vez quisiste', 'devolver algo que', 'compraste online?'], 'h2', 0.2, 0.1)}
+     ${cuerpo('Tenés 10 días para arrepentirte, y el envío de vuelta lo paga el vendedor.', 0.7)}` }),
+]);
+
+const H8 = historia('historia-08-vuelo-cancelado', 'Vuelo cancelado', [
+  esc({ dur: 6.0, tema: 'navy', wrap: 'top', html:
+    `<style>.wrap{bottom:760px}</style>
+     ${ceja('Nueva guía', 'accent', 0)}
+     ${titular(['Me cancelaron', 'el vuelo: qué', 'te tienen que dar.'], 'h2', 0.2, 0.1)}
+     ${cuerpo('Reubicación, reintegro en 30 días y la asistencia que te corresponde según cuánto esperás.', 0.72)}` }),
+]);
+
+module.exports = [R1, R2, R3, R4, H1, H2, H3, R5, R6, H7, H8];
