@@ -54,9 +54,9 @@ let md = `# Calendario de publicación
 
 Una publicación y una historia por día, nueve días. ${cal.nota}
 
-Los textos completos de cada publicación están en \`calendario.csv\` (columna
-\`texto\`) y en el kit, con botón de copiar. Los archivos salen de
-\`marketing/video/salida/\`.
+El texto completo de cada publicación está más abajo, en "Día por día". También
+está en \`calendario.csv\` (columna \`texto\`) y en el kit, con botón de copiar.
+Los archivos salen de \`marketing/video/salida/\`.
 
 > Esta lista se genera con \`node gen-calendario.js\` a partir de
 > \`calendario.json\`. Si movés un día, editá el JSON y volvé a correrlo: se
@@ -74,32 +74,57 @@ for (const d of cal.dias) {
   md += `\n### Día ${d.dia}\n\n`;
   md += `**Publicación — ${d.publicacion.tipo}:** \`${d.publicacion.archivo}\`\n`;
   md += `*${d.publicacion.titulo}.* ${d.publicacion.porque}\n\n`;
+  const t = copyDe(d.publicacion.archivo);
+  if (t) md += `Texto del posteo:\n\n${t.split('\n').map(l => '> ' + l).join('\n')}\n\n`;
   md += `**Historia — ${d.historia.tipo}:** \`${d.historia.archivo}\`\n`;
   md += `Sticker: ${d.historia.sticker}\n`;
   md += `${d.historia.porque}\n`;
 }
 fs.writeFileSync(path.join(DIR, 'CALENDARIO.md'), md);
 
-/* --- tabla para el kit --------------------------------------------------- */
+/* --- bloques de día para el kit ------------------------------------------ */
 
-let tabla = `      <tbody>\n`;
+const esc = (t) => String(t)
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+const caja = (etiqueta, texto, clase = '') => `            <div class="copy ${clase}">
+              <div class="copy-bar"><span class="label">${etiqueta}</span><button class="copy-btn" type="button">Copiar</button></div>
+              <p class="copy-text">${esc(texto)}</p>
+            </div>`;
+
+let bloques = '';
 for (const d of cal.dias) {
   const p = d.publicacion, h = d.historia;
-  tabla += `        <tr>
-          <td class="week">${d.dia}</td>
-          <td><b>${p.titulo}</b><br><span class="filename">${p.archivo}</span><br><span class="small">${p.porque}</span></td>
-          <td><b>${h.titulo}</b><br><span class="filename">${h.archivo}</span><br><span class="small">${h.sticker}</span></td>
-        </tr>\n`;
+  const textoPub = copyDe(p.archivo);
+  bloques += `      <article class="dia">
+        <div class="dia-n"><span class="label">Día</span><b>${d.dia}</b></div>
+
+        <div class="dia-col">
+          <span class="label">Publicación · ${esc(p.tipo)}</span>
+          <h3>${esc(p.titulo)}</h3>
+          <p class="filename">${esc(p.archivo)}</p>
+          <p class="small">${esc(p.porque)}</p>
+${textoPub ? caja('Texto del posteo', textoPub) : ''}
+        </div>
+
+        <div class="dia-col">
+          <span class="label">Historia · ${esc(h.tipo)}</span>
+          <h3>${esc(h.titulo)}</h3>
+          <p class="filename">${esc(h.archivo)}</p>
+          <p class="small">${esc(h.porque)}</p>
+${caja('Sticker', h.sticker, 'dia-sticker')}
+        </div>
+      </article>\n`;
 }
-tabla += `      </tbody>`;
+const tabla = bloques.trimEnd();
 
 const ini = '<!-- calendario:inicio -->', fin = '<!-- calendario:fin -->';
 if (html.includes(ini) && html.includes(fin)) {
   const nuevo = html.slice(0, html.indexOf(ini) + ini.length) + '\n' + tabla + '\n      ' + html.slice(html.indexOf(fin));
   fs.writeFileSync(path.join(DIR, 'kit-instagram.html'), nuevo);
-  console.log('kit-instagram.html: tabla actualizada');
+  console.log('kit-instagram.html: bloques de día actualizados');
 } else {
-  console.log('kit-instagram.html: no encontré los marcadores, la tabla no se tocó');
+  console.log('kit-instagram.html: no encontré los marcadores, no se tocó');
 }
 
 const faltan = cal.dias.map(d => d.publicacion.archivo).filter(a => !copyDe(a));
