@@ -1,0 +1,50 @@
+{
+  "nota": "Una publicación y una historia por día. La regla: el reel abre un tema y trae gente nueva; el carrusel del mismo tema va después, cuando ya saben quién sos. La historia del día levanta lo que se publicó el día anterior.",
+  "dias": [
+    {
+      "dia": 1,
+      "publicacion": { "tipo": "Reel", "archivo": "reel-02-manifiesto.mp4", "titulo": "Manifiesto de marca", "porque": "Abre diciendo quién sos. Es el único que no depende de que el tema te toque." },
+      "historia": { "tipo": "Imagen", "archivo": "historia-06-caja-preguntas.png", "titulo": "Caja de preguntas", "sticker": "Caja de preguntas: \"¿Con qué empresa estás peleando?\"", "porque": "Arrancás escuchando. Lo que respondan te dice qué escribir después." }
+    },
+    {
+      "dia": 2,
+      "publicacion": { "tipo": "Reel", "archivo": "reel-01-gimnasio.mp4", "titulo": "La baja del gimnasio", "porque": "El tema más buscado de todos. Va segundo para aprovechar el alcance del primero." },
+      "historia": { "tipo": "Video", "archivo": "historia-01-encuesta.mp4", "titulo": "Encuesta del gimnasio", "sticker": "Encuesta: \"Sí, mil veces\" / \"Me está pasando ahora\"", "porque": "Acompaña al reel del día y mide cuánta gente se siente identificada." }
+    },
+    {
+      "dia": 3,
+      "publicacion": { "tipo": "Reel", "archivo": "reel-04-garantia.mp4", "titulo": "Garantía de electrodomésticos", "porque": "Cambia de rubro para no cansar, y el dato del flete sorprende." },
+      "historia": { "tipo": "Video", "archivo": "historia-02-guia.mp4", "titulo": "Guía del gimnasio", "sticker": "Link a /guias/dar-de-baja-gimnasio — texto: \"Leer la guía\"", "porque": "Levanta el reel de ayer: recoge a quien lo vio y no entró al sitio." }
+    },
+    {
+      "dia": 4,
+      "publicacion": { "tipo": "Reel", "archivo": "reel-03-tarjeta.mp4", "titulo": "Consumo desconocido en la tarjeta", "porque": "El de mayor volumen de búsqueda. Va cuando la cuenta ya tiene algo de rodaje." },
+      "historia": { "tipo": "Video", "archivo": "historia-03-garantia.mp4", "titulo": "6 meses de garantía", "sticker": "Link a /guias/garantia-electrodomesticos — texto: \"Cómo reclamar\"", "porque": "Levanta el reel de garantía de ayer." }
+    },
+    {
+      "dia": 5,
+      "publicacion": { "tipo": "Reel", "archivo": "reel-05-arrepentimiento.mp4", "titulo": "Botón de arrepentimiento", "porque": "Abre la campaña de compras a distancia con el tema más universal." },
+      "historia": { "tipo": "Video", "archivo": "historia-07-encuesta-devolucion.mp4", "titulo": "Encuesta de devoluciones", "sticker": "Encuesta: \"Sí, sin drama\" / \"Me lo hicieron imposible\"", "porque": "Acompaña al reel del día. Guardá la captura: la vas a usar el día 9." }
+    },
+    {
+      "dia": 6,
+      "publicacion": { "tipo": "Carrusel", "archivo": "carrusel-01-comprar-online/ (7 láminas)", "titulo": "Cinco derechos en toda compra por internet", "porque": "Profundiza lo que abrió el reel de ayer. Es el más guardable de los tres." },
+      "historia": { "tipo": "Imagen", "archivo": "historia-04-boton-arrepentimiento.png", "titulo": "10 días", "sticker": "Link a /guias/devolver-compra-mercado-libre — texto: \"Cómo devolver\"", "porque": "Levanta el reel de ayer y refuerza el carrusel de hoy." }
+    },
+    {
+      "dia": 7,
+      "publicacion": { "tipo": "Reel", "archivo": "reel-06-vuelo-cancelado.mp4", "titulo": "Me cancelaron el vuelo", "porque": "Entra en la parte de viajes, justo cuando se reserva el verano." },
+      "historia": { "tipo": "Video", "archivo": "historia-08-vuelo-cancelado.mp4", "titulo": "Nueva guía de vuelos", "sticker": "Link a /guias/flybondi-vuelo-cancelado — texto: \"Leer la guía\"", "porque": "Acompaña al reel del día y manda tráfico a la guía." }
+    },
+    {
+      "dia": 8,
+      "publicacion": { "tipo": "Carrusel", "archivo": "carrusel-03-demoras-aeropuerto/ (6 láminas)", "titulo": "Qué te deben según cuánto esperás", "porque": "La tabla por tramos es lo más práctico de todo el kit. Va detrás del reel de vuelos." },
+      "historia": { "tipo": "Imagen", "archivo": "historia-05-demoras-vuelo.png", "titulo": "Demoras por tramos", "sticker": "Link a /guias/flybondi-vuelo-cancelado — texto: \"Qué te deben\"", "porque": "Levanta el reel de ayer y resume el carrusel de hoy en una placa." }
+    },
+    {
+      "dia": 9,
+      "publicacion": { "tipo": "Carrusel", "archivo": "carrusel-02-agencia-viajes/ (6 láminas)", "titulo": "La agencia no se puede lavar las manos", "porque": "Cierra apuntando a la reserva del verano, que es lo que se está comprando ahora." },
+      "historia": { "tipo": "La hacés vos", "archivo": "—", "sticker": "Captura de los resultados de la encuesta del día 5, con el porcentaje encima", "porque": "Es la única historia que no está renderizada, y es de las que mejor funcionan: prueba social con datos propios. Si no llegaste a juntar respuestas, repetí historia-06-caja-preguntas.png." }
+    }
+  ]
+}
